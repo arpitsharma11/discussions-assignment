@@ -3,7 +3,7 @@
 }
 
 .discussion-main{
-    margin: 30px 10% 0 10%;
+    margin: 30px 10px;
 }
 
 .comment{
@@ -21,6 +21,11 @@
         top: 0;
         right: 0;
     }
+}
+
+.comment-container {
+    margin-left: 5%;
+    margin-top: 10px;
 }
 
 .action_icons {
