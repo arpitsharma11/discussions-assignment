@@ -1,10 +1,10 @@
 {
-  "name": "rentomojo",
+  "name": "Discussion",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "webpack-dev-server --hot --config webpack.config.js --open",
+    "start": "webpack-dev-server --hot --config webpack.config.js --open",
     "build": "webpack --config webpack.config.js"
   },
   "author": "",
@@ -20,8 +20,13 @@
     "postcss-loader": "^3.0.0",
     "sass": "^1.22.10",
     "sass-loader": "^7.3.1",
+    "svg-inline-loader": "^0.8.0",
+    "url-loader": "^3.0.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "svg-url-loader": "^4.0.0"
   }
 }

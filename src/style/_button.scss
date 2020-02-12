@@ -1,0 +1,27 @@
+.btn {
+    display:inline-block;
+    padding: 0.5em 3em;
+    border:0.16em #000000;
+    margin:0 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-weight:800;
+    color: #000000;
+    text-align:center;
+    transition: all 0.15s;
+    &:hover{
+        color:#434343;
+        border-color:#434343;
+    }
+
+    &_comment{
+        font-weight:400;
+        border:0.16em #2A2A72;
+        color: #2A2A72;
+        &:hover{
+            color:#009FFD;
+            border-color:#009FFD;
+        }
+    }
+}

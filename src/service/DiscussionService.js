@@ -2,16 +2,18 @@ import UsernameService from '../service/UsenameService';
 
 class DiscussionService{
 
-    static startDiscussion(type) {
+    static startDiscussion(type,parentId,topic) {
         const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
 
         const newDiscussion = {
             id: discussions.length ? discussions.length : 0,
             createdBy: UsernameService.fetchUsername(),
             createdAt: new Date(),
-            vote: 0,
+            upVote: 0,
+            downVote: 0,
             type: type,
-            comments: []
+            parentId,
+            topic
         };
 
         localStorage.setItem('discussions',JSON.stringify([...discussions,newDiscussion]));
@@ -20,7 +22,12 @@ class DiscussionService{
 
     static fetchDiscussion() {
         const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
-        return discussions.filter(discussion => discussion.type === "discussion") || [];
+        return discussions.filter(discussion => discussion.type === "discussion");
+    }
+
+    static fetchComments() {
+        const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
+        return discussions.filter(discussion => discussion.type === "comment");
     }
 
     static updateVote(id,type) {
@@ -31,11 +38,16 @@ class DiscussionService{
                 id: id,
                 createdBy: discussions[id].createdBy,
                 createdAt: discussions[id].createdAt,
-                vote: type === "UPVOTE" ? 
-                    discussions[id].vote + 1 :
-                    discussions[id].vote && discussions[id].vote - 1,
+                upVote: type === "upVote" ? 
+                    discussions[id].upVote + 1 :
+                    discussions[id].upVote,
+                downVote: type === "downVote" ? 
+                    discussions[id].downVote + 1 :
+                    discussions[id].downVote,
                 type: discussions[id].type,
-                comments: discussions[id].comments
+                comments: discussions[id].comments,
+                parentId: discussions[id].parentId,
+                topic: discussions[id].topic
             };
 
             localStorage.setItem(
@@ -45,30 +57,21 @@ class DiscussionService{
                         updateDiscussion,
                         ...discussions.slice(id+1)])
                 );
-        }
+
+            return type === "upVote" ? updateDiscussion.upVote : updateDiscussion.downVote ;
+        } 
     }
 
     static addComment(id){
 
         const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
 
-        const updateDiscussion = {
-            id: id,
-            createdBy: discussions[id].createdBy,
-            createdAt: discussions[id].createdAt,
-            vote: discussions[id].vote,
-            type: discussions[id].type,
-            comments: [...discussions[id].comments,this.startDiscussion('comment').id]
-        };
+        return this.startDiscussion('comment',id);
+    }
 
-        const updatedDiscussions = JSON.parse(localStorage.getItem('discussions')) || [];
-        localStorage.setItem(
-            'discussions',
-            JSON.stringify( 
-                [...updatedDiscussions.slice(0,id),
-                    updateDiscussion,
-                    ...updatedDiscussions.slice(id+1)])
-            );
+    static fetchComment(id){
+        const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
+        return discussions[id];
     }
 
 }

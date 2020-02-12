@@ -9,7 +9,7 @@ module.exports = {
     publicPath: '/dist/'
   },
   devServer: {
-    port: 3000
+    port: 3001
 },
   module: {
   rules: [
@@ -48,10 +48,18 @@ module.exports = {
                options: {
                  implementation: require("sass")
                }
-             }
-           ]
+             },
+
+          ]
     },
-]
+    {
+      test: /\.svg/,
+      use: {
+          loader: 'svg-url-loader',
+          options: {}
+      }
+    }
+  ]
   },
 plugins: [
     new MiniCssExtractPlugin({

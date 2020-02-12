@@ -1,0 +1,30 @@
+.discussion{
+    margin-bottom: 10px
+}
+
+.discussion-main{
+    margin: 30px 10% 0 10%;
+}
+
+.comment{
+    position: relative;
+    display: none;
+    margin-left: 3%;
+    
+    &_textField {
+        width: 85%;
+        height: 40px;
+    }
+
+    &_button {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+.action_icons {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}

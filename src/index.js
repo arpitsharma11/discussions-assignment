@@ -1,11 +1,9 @@
-import AddDiscussion from "./component/AddDiscussion";
-import DiscussionContainer from "./component/DiscussionContainer";
+import "./style/main.scss";
+import App from './component/App';
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const addDiscussion = new AddDiscussion();
-    const discussionContainer = new DiscussionContainer();
-    
-    addDiscussion.render();
-    discussionContainer.render();
+    const app = new App();
+
+    app.render();
 });

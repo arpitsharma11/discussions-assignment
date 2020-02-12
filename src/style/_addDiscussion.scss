@@ -1,0 +1,14 @@
+.add-discussion{
+    position: relative;
+
+    &_textField {
+        width: 100%;
+        height: 40px;
+    }
+
+    &_button {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

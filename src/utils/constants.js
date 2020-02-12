@@ -9,3 +9,5 @@ export const USERNAMES = [
     'TEST9',
     'TEST10'
 ];
+
+export const MONTH = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];

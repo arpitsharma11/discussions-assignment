@@ -1,0 +1,8 @@
+.textField{
+    border-width: 0 0 2px 0;
+    &:focus{
+        border-color: red;
+        border-width: 0 0 2px 0;
+        outline-width: 0;
+    }
+}
