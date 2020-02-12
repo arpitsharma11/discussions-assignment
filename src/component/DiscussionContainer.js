@@ -8,8 +8,8 @@ const discussion = new Discussion();
 class DiscussionContainer{
 
     constructor(){
-        this.discussions = DiscussionService.fetchDiscussion();
-        this.comments = DiscussionService.fetchComments();
+        this.discussions = DiscussionService.fetchDiscussion(); // Fetch all discussions
+        this.comments = DiscussionService.fetchComments(); // Fetch all comments
     }
 
     render(){
@@ -23,21 +23,26 @@ class DiscussionContainer{
                 id="topic" 
                 name="lname" 
             />`;
+
+        //Rendering all discussions
         this.discussions.forEach(element => {
             discussion.render(discussionMainDom,element);
         });
 
+        //Rendering all comments to there respective discussions
         this.comments.forEach(element => {
             const commentsDiv = document.querySelector(`#comments-${element.parentId}`);
             discussion.render(commentsDiv,element);
         });
 
+        //adding event listner
         this.addDiscussionListeners();
         this.addVoteListeners();
         this.addCommentListner();
         this.addEnableCommentListener();
     }
 
+    //listner for add new discussion
     addDiscussionListeners(){
 
         const discussionMainDom = document.querySelector(".discussion-main");
@@ -69,7 +74,7 @@ class DiscussionContainer{
         });
     };
 
-    
+    //listner for up vote and down vote
     addVoteListeners(){
 
         const upVoteBtns = document.querySelectorAll(".discussion-up");
@@ -90,6 +95,7 @@ class DiscussionContainer{
 
     };
 
+    //listner for add new comment
     addCommentListner(){
         const commentInputs = document.querySelectorAll(".comment_textField");
         
@@ -99,6 +105,7 @@ class DiscussionContainer{
         })
     }
 
+    //listner for to show/hide comment section
     addEnableCommentListener(){
         const enableComment = document.querySelectorAll(".enable-comment");
 
@@ -109,6 +116,8 @@ class DiscussionContainer{
         });
     }
 
+
+    //Adding new comment on discussion with id
     addComment(id){
         const commentDom = document.getElementById(`comment-${id}`);
 
@@ -116,7 +125,7 @@ class DiscussionContainer{
 
             if(event.key === 'Enter'){
                 if(commentDom.value !== ""){
-                    
+
                     const commentsDiv = document.querySelector(`#comments-${id}`);
                     const newDiscussion = DiscussionService.startDiscussion("comment",id,commentDom.value);
                     
@@ -143,6 +152,7 @@ class DiscussionContainer{
         });
     }
 
+    // Updating vote in storage
     updateVote(btn,id,task){
         btn.addEventListener("click", () => {
             const vote = DiscussionService.updateVote(id,task);

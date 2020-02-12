@@ -1,4 +1,3 @@
-import Comment from './Comment';
 import { dateParse } from '../utils/helper';
 import UpArrow from '../icons/arrow-up.svg';
 import DownArrow from '../icons/arrow-down.svg';
@@ -8,8 +7,12 @@ const comment = new Comment();
 
 class Discussion{
 
+    //Render discussion
     render(parentDom,discussion){
         const discussionDiv = document.createElement("div");
+
+
+        //Check if its a discussion or comment
         if(discussion.type ==='comment'){
             discussionDiv.setAttribute('class','discussion comment-container');
         }else{

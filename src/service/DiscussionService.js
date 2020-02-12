@@ -2,6 +2,7 @@ import UsernameService from '../service/UsenameService';
 
 class DiscussionService{
 
+    //create new discussion
     static startDiscussion(type,parentId,topic) {
         const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
 
@@ -20,16 +21,19 @@ class DiscussionService{
         return newDiscussion;
     }
 
+    //fetch all discussions
     static fetchDiscussion() {
         const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
         return discussions.filter(discussion => discussion.type === "discussion");
     }
 
+    //fetch all comments
     static fetchComments() {
         const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
         return discussions.filter(discussion => discussion.type === "comment");
     }
 
+    //updateing vote
     static updateVote(id,type) {
         const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
 
@@ -60,18 +64,11 @@ class DiscussionService{
 
             return type === "upVote" ? updateDiscussion.upVote : updateDiscussion.downVote ;
         } 
-    }
+    }  
 
+    // adding comment to discussion
     static addComment(id){
-
-        const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
-
         return this.startDiscussion('comment',id);
-    }
-
-    static fetchComment(id){
-        const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
-        return discussions[id];
     }
 
 }

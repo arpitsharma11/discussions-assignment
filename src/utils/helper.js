@@ -1,5 +1,5 @@
+//Function parse discussion date.
 export const dateParse = (date) => {
-
     const presentDate = new Date();
     const timeStamp = new Date(date);
     const secondsPast = (presentDate.getTime() - timeStamp.getTime()) / 1000;

@@ -4,7 +4,7 @@ const appDom = document.querySelector(".app");
 
 class App{
     constructor(){
-        this.discussionContainer = new DiscussionContainer();
+        this.discussionContainer = new DiscussionContainer(); // initiated app
     }
 
     render(){
